@@ -13,6 +13,7 @@ import (
 	"time"
 
 	"github.com/fiatjaf/khatru"
+	"github.com/joho/godotenv"
 	"github.com/nbd-wtf/go-nostr"
 )
 
@@ -31,6 +32,7 @@ var (
 )
 
 func main() {
+	_ = godotenv.Load(".env")
 	discoveryRelays := GetDiscoveryRelays()
 	fmt.Printf("Discovery relays: %v\n", discoveryRelays)
 
