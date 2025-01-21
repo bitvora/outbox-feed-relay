@@ -49,12 +49,12 @@ func dynamicRelayHandler(w http.ResponseWriter, r *http.Request) {
 	npub = strings.TrimPrefix(npub, "/")
 
 	npubRelay := khatru.NewRelay()
-	npubRelay.Info.Description = "utxo's algo relay"
-	npubRelay.Info.Name = "utxo's algo relay"
-	npubRelay.Info.PubKey = "e2ccf7cf20403f3f2a4a55b328f0de3be38558a7d5f33632fdaaefc726c1c8eb"
-	npubRelay.Info.Software = "https://github.com/bitvora/outbox-relay"
-	npubRelay.Info.Version = "0.1.1"
-	npubRelay.Info.Icon = "https://i.nostr.build/6G6wW.gif"
+	npubRelay.Info.Description = "an outbox feed for " + npub
+	npubRelay.Info.Name = "outbox feed relay"
+	npubRelay.Info.PubKey = os.Getenv("RELAY_PUBKEY")
+	npubRelay.Info.Software = "https://github.com/bitvora/outbox-feed-relay"
+	npubRelay.Info.Version = "0.1.0"
+	npubRelay.Info.Icon = os.Getenv("RELAY_ICON")
 
 	follows := GetFollows(npub, GetDiscoveryRelays())
 	relays := GetFollowsRelays(npub, follows, GetDiscoveryRelays())
